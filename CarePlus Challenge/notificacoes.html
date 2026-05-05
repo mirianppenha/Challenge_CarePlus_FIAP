@@ -21,7 +21,7 @@
 
         </div>
     </nav>   
-    <div class="container-fluid px-3 mt-4 pb-5">
+    <div class="container-fluid px-3 mt-4" style="padding-bottom: 120px;">
 
   <h5 class="fw-bold mb-4">Notificações</h5>
 
@@ -38,39 +38,39 @@
           <small class="text-muted">2 dias atrás</small>
         </div>
         <p class="small text-muted mb-1">Sua consulta com Dra. Maria Silva é em 2 dias (25/10 às 14:30)</p>
-        <a href="#" class="small text-primary fw-bold">Adicionar ao Calendário →</a>
+        <a href="#" class="small text-primary fw-bold" onclick="adicionarCalendario()">Adicionar ao Calendário →</a>
       </div>
     </div>
   </div>
-
-<!-- Notificação 2 - Lembrete Inteligente com Telemedicina -->
-<div class="card border-0 shadow-sm rounded-4 mb-3"
-     style="border-left: 4px solid #f59e0b !important;">
-  <div class="card-body p-3">
-    <div class="d-flex align-items-start gap-3 mb-2">
+  <!-- Botão WhatsApp -->
+  <div class="card border-0 shadow-sm rounded-4 mb-3"
+      style="border-left: 4px solid #25D366 !important;">
+    <div class="card-body p-3 d-flex align-items-center gap-3">
       <div class="rounded-circle d-flex align-items-center justify-content-center"
-           style="width:44px; height:44px; background:#fef9ee; flex-shrink:0;">
-        <i class="bi bi-exclamation-triangle-fill text-warning fs-5"></i>
+          style="width:44px; height:44px; background:#25D366; flex-shrink:0;">
+        <i class="bi bi-whatsapp text-white fs-5"></i>
       </div>
       <div class="flex-grow-1">
-        <div class="d-flex justify-content-between">
-          <p class="fw-bold mb-1">⚠️ Alerta de Risco de No-Show</p>
-          <small class="text-muted">2 horas atrás</small>
-        </div>
-        <p class="small text-muted mb-2">
-          Detectamos <strong>chuva forte</strong> + <strong>trânsito intenso</strong> 
-          para amanhã às 14:30 na sua região. 
-          Risco de não comparecer: <span class="badge bg-danger">Alto</span>
-        </p>
-        <div class="p-2 rounded-3 mb-2" style="background:#fff8e1; border:1px solid #fde68a;">
-          <small>
-            🌧️ Clima: Chuva forte prevista<br>
-            🚗 Trânsito: Intenso no Itaim Bibi<br>
-            📍 Distância: 12km do seu endereço
-          </small>
-        </div>
+        <p class="fw-bold mb-0">Receber lembretes no WhatsApp</p>
+        <p class="small text-muted mb-0">Ative para receber confirmações e alertas direto no seu WhatsApp!</p>
+      </div>
+      <div class="form-check form-switch mb-0">
+        <input class="form-check-input" type="checkbox" 
+              id="whatsappToggle"
+              onchange="ativarWhatsapp(this.checked)"
+              style="width:40px; height:20px;">
       </div>
     </div>
+  </div>
+<!-- Notificação Clima Real -->
+<div class="card border-0 shadow-sm rounded-4 mb-3" 
+     id="notifClima"
+     style="border-left: 4px solid #f59e0b !important;">
+  <div class="card-body p-3 d-flex align-items-center gap-3">
+    <div class="spinner-border spinner-border-sm text-warning" role="status"></div>
+    <p class="small text-muted mb-0">Verificando condições climáticas...</p>
+  </div>
+</div>
 
     <div class="row g-2">
       <div class="col-6">
@@ -125,7 +125,165 @@
       </div>
     </div>
   </div>
+  <!-- Notificação 5 - Score e Pontuação -->
+  <div class="card border-0 shadow-sm rounded-4 mb-3"
+      style="border-left: 4px solid #1a56db !important;">
+    <div class="card-body p-3 d-flex align-items-start gap-3">
+      <div class="rounded-circle d-flex align-items-center justify-content-center"
+          style="width:44px; height:44px; background:#eff6ff; flex-shrink:0;">
+        <i class="bi bi-trophy-fill text-primary fs-5"></i>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-1">Seu Score de Responsabilidade</p>
+          <small class="text-muted">Hoje</small>
+        </div>
+        <p class="small text-muted mb-2">
+          Você tem <strong>850 pontos</strong> — Nível Ouro! 🥇<br>
+          Faltam apenas <strong>150 pontos</strong> para o Nível Diamante!
+        </p>
+        <div class="p-2 rounded-3 mb-2" style="background:#eff6ff;">
+          <small class="text-primary fw-bold">Como usar seus créditos:</small><br>
+          <small>💊 Desconto em farmácias parceiras</small><br>
+          <small>🧘 Apps de meditação gratuitos</small><br>
+          <small>🏥 Upgrade para Telemedicina Premium</small>
+        </div>
+        <a href="perfil.html" class="small text-primary fw-bold">
+          Ver minha carteira →
+        </a>
+      </div>
+    </div>
+  </div>
 
+  <!-- Notificação 6 - Importância do acompanhamento (Cardiologia) -->
+  <div class="card border-0 shadow-sm rounded-4 mb-3"
+      style="border-left: 4px solid #e53e3e !important;">
+    <div class="card-body p-3 d-flex align-items-start gap-3">
+      <div class="rounded-circle d-flex align-items-center justify-content-center"
+          style="width:44px; height:44px; background:#fce8e8; flex-shrink:0;">
+        <i class="bi bi-heart-pulse-fill text-danger fs-5"></i>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-1">❤️ Sua Saúde Cardiovascular</p>
+          <small class="text-muted">2 dias atrás</small>
+        </div>
+        <p class="small text-muted mb-2">
+          Você utiliza bastante a <strong>Cardiologia</strong>. 
+          Sabia que o acompanhamento regular reduz em 
+          <strong>30% o risco de doenças cardíacas</strong>?
+        </p>
+        <div class="p-2 rounded-3 mb-2" style="background:#fce8e8;">
+          <small class="text-danger fw-bold">Dicas para o seu coração:</small><br>
+          <small>🚶 30 min de caminhada por dia</small><br>
+          <small>🥗 Reduza o sal e gorduras saturadas</small><br>
+          <small>😴 Durma entre 7-8 horas por noite</small><br>
+          <small>📅 Consulte seu cardiologista a cada 6 meses</small>
+        </div>
+        <button class="small text-danger fw-bold btn btn-link p-0"
+                onclick="agendarEspecialidade('Cardiologia')">
+          Agendar consulta de retorno →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificação 7 - Campanha Outubro Rosa -->
+  <div class="card border-0 shadow-sm rounded-4 mb-3"
+      style="border-left: 4px solid #ed64a6 !important;">
+    <div class="card-body p-3 d-flex align-items-start gap-3">
+      <div class="rounded-circle d-flex align-items-center justify-content-center"
+          style="width:44px; height:44px; background:#fce7f3; flex-shrink:0;">
+        <i class="bi bi-gender-female text-danger fs-5" style="color:#ed64a6 !important;"></i>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-1" style="color:#ed64a6;">🎀 Outubro Rosa</p>
+          <small class="text-muted">3 dias atrás</small>
+        </div>
+        <p class="small text-muted mb-2">
+          <strong>Prevenção ao Câncer de Mama.</strong> 
+          A mamografia anual é recomendada para mulheres 
+          acima de 40 anos. Detecção precoce aumenta em 
+          <strong>95% as chances de cura!</strong>
+        </p>
+        <div class="p-2 rounded-3 mb-2" style="background:#fce7f3;">
+          <small style="color:#ed64a6;" class="fw-bold">Recomendações:</small><br>
+          <small>🩺 Mamografia anual após os 40 anos</small><br>
+          <small>👩‍⚕️ Autoexame mensal</small><br>
+          <small>📅 Consulta ginecológica anual</small>
+        </div>
+        <button class="btn btn-link p-0 small fw-bold" 
+                style="color:#ed64a6;"
+                onclick="agendarEspecialidade('Ginecologia')">
+          Agendar consulta preventiva →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificação 8 - Campanha Novembro Azul -->
+  <div class="card border-0 shadow-sm rounded-4 mb-3"
+      style="border-left: 4px solid #3182ce !important;">
+    <div class="card-body p-3 d-flex align-items-start gap-3">
+      <div class="rounded-circle d-flex align-items-center justify-content-center"
+          style="width:44px; height:44px; background:#ebf8ff; flex-shrink:0;">
+        <i class="bi bi-gender-male text-primary fs-5"></i>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-1 text-primary">💙 Novembro Azul</p>
+          <small class="text-muted">4 dias atrás</small>
+        </div>
+        <p class="small text-muted mb-2">
+          <strong>Prevenção ao Câncer de Próstata.</strong>
+          É o tipo de câncer mais comum entre homens no Brasil. 
+          O diagnóstico precoce tem <strong>90% de chance de cura!</strong>
+        </p>
+        <div class="p-2 rounded-3 mb-2" style="background:#ebf8ff;">
+          <small class="text-primary fw-bold">Quando fazer o exame:</small><br>
+          <small>👨 A partir dos 50 anos</small><br>
+          <small>👨‍🦱 A partir dos 45 anos se histórico familiar</small><br>
+          <small>🩸 PSA + toque retal anual</small>
+        </div>
+        <a href="#" class="small text-primary fw-bold">
+          Saiba mais sobre prevenção →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificação 9 - Vacinas por faixa etária -->
+  <div class="card border-0 shadow-sm rounded-4 mb-3"
+      style="border-left: 4px solid #38a169 !important;">
+    <div class="card-body p-3 d-flex align-items-start gap-3">
+      <div class="rounded-circle d-flex align-items-center justify-content-center"
+          style="width:44px; height:44px; background:#f0fdf4; flex-shrink:0;">
+        <i class="bi bi-shield-fill-check text-success fs-5"></i>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-1 text-success">💉 Calendário Vacinal</p>
+          <small class="text-muted">5 dias atrás</small>
+        </div>
+        <p class="small text-muted mb-2">
+          Com base no seu perfil, verifique se suas 
+          vacinas estão em dia!
+        </p>
+        <div class="p-2 rounded-3 mb-2" style="background:#f0fdf4;">
+          <small class="text-success fw-bold">Vacinas recomendadas para adultos:</small><br>
+          <small>💉 Influenza — anual</small><br>
+          <small>💉 Covid-19 — dose de reforço anual</small><br>
+          <small>💉 Hepatite B — se não vacinado</small><br>
+          <small>💉 dT (Difteria/Tétano) — a cada 10 anos</small><br>
+          <small>💉 HPV — até 45 anos</small>
+        </div>
+        <a href="#" class="small text-success fw-bold">
+          Ver calendário vacinal completo →
+        </a>
+      </div>
+    </div>
+  </div>
     </div> 
         <nav class="fixed-bottom bg-white border-top">
             <div class="d-flex justify-content-around align-items-center py-2">

@@ -257,3 +257,271 @@ function voltarParaMedicos() {
   document.getElementById('calendarioSection').style.display = 'none';
   document.getElementById('medicosSection').style.display = 'block';
 }
+function ativarWhatsapp(ativo) {
+  if (ativo) {
+    const mensagem = `Olá! Gostaria de ativar os lembretes de consulta Care Plus no WhatsApp.
+    
+📅 Próxima consulta: Dra. Maria Silva
+🏥 Cardiologia - Care Plus Itaim
+📍 Av. Brigadeiro Faria Lima, 1461
+⏰ sexta-feira, 24/10 às 14:30
+
+Por favor confirme meu cadastro!`;
+
+    const numero = '5511999999999';
+    window.open(
+      `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`,
+      '_blank'
+    );
+  } else {
+    alert('Lembretes por WhatsApp desativados.');
+  }
+}
+function verRelatorio(tipo) {
+  const titulo = document.getElementById('modalTitulo');
+  const conteudo = document.getElementById('modalConteudo');
+
+  if (tipo === 'consultas') {
+    titulo.textContent = '📊 Relatório de Consultas';
+    conteudo.innerHTML = `
+      <p class="text-muted small mb-3">Histórico dos últimos 12 meses</p>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">Janeiro 2025</span>
+        <span class="badge bg-success rounded-pill">2 realizadas</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">Fevereiro 2025</span>
+        <span class="badge bg-success rounded-pill">1 realizada</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">Março 2025</span>
+        <span class="badge bg-danger rounded-pill">1 no-show</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">Abril 2025</span>
+        <span class="badge bg-success rounded-pill">3 realizadas</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">Maio 2025</span>
+        <span class="badge bg-success rounded-pill">2 realizadas</span>
+      </div>
+      <div class="mt-3 p-2 rounded-3" style="background:#eff6ff;">
+        <small class="text-primary fw-bold">Total: 22 consultas realizadas em 2025</small>
+      </div>`;
+
+  } else if (tipo === 'comparecimento') {
+    titulo.textContent = '✅ Taxa de Comparecimento';
+    conteudo.innerHTML = `
+      <p class="text-muted small mb-3">Análise do seu comportamento</p>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-1">
+          <small>Comparecimentos</small>
+          <small class="fw-bold text-success">92%</small>
+        </div>
+        <div class="progress" style="height:10px;">
+          <div class="progress-bar bg-success" style="width:92%;"></div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-1">
+          <small>Cancelamentos antecipados</small>
+          <small class="fw-bold text-warning">5%</small>
+        </div>
+        <div class="progress" style="height:10px;">
+          <div class="progress-bar bg-warning" style="width:5%;"></div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-1">
+          <small>No-show</small>
+          <small class="fw-bold text-danger">3%</small>
+        </div>
+        <div class="progress" style="height:10px;">
+          <div class="progress-bar bg-danger" style="width:3%;"></div>
+        </div>
+      </div>
+      <div class="p-2 rounded-3 mt-2" style="background:#f0fdf4;">
+        <small class="text-success fw-bold">
+          🏆 Você está acima da média dos pacientes Care Plus (78%)!
+        </small>
+      </div>`;
+
+  } else if (tipo === 'sequencia') {
+    titulo.textContent = '🔥 Sequência Atual';
+    conteudo.innerHTML = `
+      <p class="text-muted small mb-3">Suas últimas consultas</p>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">24/10/2025 — Cardiologia</span>
+        <span class="text-success">✅</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">10/10/2025 — Dermatologia</span>
+        <span class="text-success">✅</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">25/09/2025 — Cardiologia</span>
+        <span class="text-success">✅</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">10/09/2025 — Pediatria</span>
+        <span class="text-success">✅</span>
+      </div>
+      <div class="d-flex justify-content-between py-2 border-bottom">
+        <span class="small">28/08/2025 — Oftalmologia</span>
+        <span class="text-success">✅</span>
+      </div>
+      <div class="mt-3 p-2 rounded-3" style="background:#fff8e1;">
+        <small class="text-warning fw-bold">
+          ⚡ 8 consultas seguidas sem faltas! Continue assim para ganhar o badge Sequência Campeã!
+        </small>
+      </div>`;
+  }
+
+  new bootstrap.Modal(document.getElementById('modalRelatorio')).show();
+}
+function agendarEspecialidade(especialidade) {
+  if (confirm(`Deseja agendar uma consulta de ${especialidade}?\n\nVocê será direcionado para o agendamento!`)) {
+    window.location.href = 'agendar.html';
+  }
+}
+// ==========================================
+// INTEGRAÇÃO CLIMA REAL - OpenWeatherMap
+// ==========================================
+
+const WEATHER_API_KEY = '8cbc10ebe11cf7c26a2ca18ab0c4fb06';
+const CLINICA_LAT = -23.5671; // Care Plus Itaim
+const CLINICA_LON = -46.6924;
+
+async function buscarClima() {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${CLINICA_LAT}&lon=${CLINICA_LON}&appid=${WEATHER_API_KEY}&units=metric&lang=pt_br`
+    );
+    const data = await response.json();
+
+    const temperatura = Math.round(data.main.temp);
+    const descricao = data.weather[0].description;
+    const icone = data.weather[0].icon;
+    const umidade = data.main.humidity;
+    const vento = data.wind.speed;
+
+    // Detecta risco climático
+    const condicao = data.weather[0].main;
+    const riscoAlto = ['Rain', 'Thunderstorm', 'Drizzle', 'Snow'].includes(condicao);
+
+    // Atualiza a dica do dia na index.html
+    const dicaBox = document.getElementById('dicaClima');
+    if (dicaBox) {
+      dicaBox.innerHTML = `
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <img src="https://openweathermap.org/img/wn/${icone}.png" 
+               width="40" alt="clima">
+          <div>
+            <p class="fw-bold mb-0" style="color:${riscoAlto ? '#f59e0b' : '#1a56db'}">
+              ${riscoAlto ? '⚠️ Alerta Climático' : '☀️ Condições favoráveis'}
+            </p>
+            <p class="small text-muted mb-0">
+              ${temperatura}°C — ${descricao} — Umidade: ${umidade}%
+            </p>
+          </div>
+        </div>
+        ${riscoAlto ? `
+        <p class="small text-muted mb-2">
+          Condições climáticas podem impactar sua ida à consulta.
+        </p>
+        <div class="d-flex gap-2">
+          <a href="notificacoes.html" class="btn btn-sm btn-warning rounded-3 fw-bold">
+            Ver Alertas
+          </a>
+          <button class="btn btn-sm btn-outline-warning rounded-3"
+                  onclick="trocarTelemedicina()">
+            Telemedicina
+          </button>
+        </div>` : `
+        <p class="small text-muted mb-0">
+          Ótimo dia para comparecer à sua consulta! 
+        </p>`}
+      `;
+    }
+
+    // Atualiza notificações
+    atualizarNotificacaoClima(temperatura, descricao, icone, riscoAlto, vento);
+
+    return { temperatura, descricao, riscoAlto };
+
+} catch (error) {
+    console.log('Erro ao buscar clima:', error);
+    
+    // Fallback enquanto API não ativa
+    const dicaBox = document.getElementById('dicaClima');
+    if (dicaBox) {
+      dicaBox.innerHTML = `
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div class="rounded-circle d-flex align-items-center justify-content-center"
+               style="width:36px; height:36px; background:#1a56db; flex-shrink:0;">
+            <i class="bi bi-cloud-sun-fill text-white"></i>
+          </div>
+          <div>
+            <p class="fw-bold text-primary mb-0">Dica do Dia</p>
+            <p class="small text-muted mb-0">
+              Planeje sua ida à consulta com antecedência!
+            </p>
+          </div>
+        </div>`;
+    }
+  }
+
+function atualizarNotificacaoClima(temp, descricao, icone, riscoAlto, vento) {
+  const notifClima = document.getElementById('notifClima');
+  if (!notifClima) return;
+
+  notifClima.innerHTML = `
+    <div class="card-body p-3 d-flex align-items-start gap-3">
+      <div class="rounded-circle d-flex align-items-center justify-content-center"
+           style="width:44px; height:44px; background:${riscoAlto ? '#fef9ee' : '#f0fdf4'}; flex-shrink:0;">
+        <img src="https://openweathermap.org/img/wn/${icone}.png" 
+             width="30" alt="clima">
+      </div>
+      <div class="flex-grow-1">
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-1">
+            ${riscoAlto ? '⚠️ Alerta Climático' : '✅ Clima Favorável'}
+          </p>
+          <small class="text-muted">Agora</small>
+        </div>
+        <p class="small text-muted mb-2">
+          ${temp}°C — ${descricao} — Vento: ${vento} m/s
+        </p>
+        ${riscoAlto ? `
+        <div class="p-2 rounded-3 mb-2" style="background:#fff8e1; border:1px solid #fde68a;">
+          <small>
+            🌧️ Condições climáticas adversas detectadas<br>
+            🚗 Pode impactar seu deslocamento à clínica<br>
+            💻 Considere trocar para Telemedicina
+          </small>
+        </div>
+        <div class="row g-2">
+          <div class="col-6">
+            <button class="btn btn-outline-primary w-100 rounded-3 btn-sm"
+                    onclick="abrirRota()">
+              <i class="bi bi-map me-1"></i>Ver Rota
+            </button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-primary w-100 rounded-3 btn-sm fw-bold"
+                    onclick="trocarTelemedicina()">
+              <i class="bi bi-camera-video me-1"></i>Telemedicina
+            </button>
+          </div>
+        </div>` : `
+        <p class="small text-success mb-0">
+          ✅ Ótimas condições para comparecer à sua consulta!
+        </p>`}
+      </div>
+    </div>`;
+}
+
+// Busca o clima ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+  buscarClima();
+});
