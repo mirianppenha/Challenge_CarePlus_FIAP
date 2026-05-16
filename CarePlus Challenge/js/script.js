@@ -388,7 +388,7 @@ function agendarEspecialidade(especialidade) {
 // INTEGRAÇÃO CLIMA REAL - OpenWeatherMap
 // ==========================================
 
-const WEATHER_API_KEY = '8cbc10ebe11cf7c26a2ca18ab0c4fb06';
+const WEATHER_API_KEY = CONFIG.WEATHER_API_KEY;
 const CLINICA_LAT = -23.5671; // Care Plus Itaim
 const CLINICA_LON = -46.6924;
 

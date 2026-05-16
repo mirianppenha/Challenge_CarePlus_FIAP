@@ -151,7 +151,8 @@ careplus/
 
 ## Author
 
-**Mirian Priscila da Penha** — RM: 567095  
+**Mirian Priscila da Penha**
+**Miguel Angelo da Cruz Silva**
 Systems Analysis and Development — FIAP  
 [LinkedIn](https://linkedin.com/in/your-profile) | [GitHub](https://github.com/your-username)
 
