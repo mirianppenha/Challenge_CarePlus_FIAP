@@ -1,14 +1,24 @@
-/* Global font */
+/* Fonte Global */
 * {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* Body background */
+/* Corpo Background */
 body {
-  background-color: #f5f7fb;
+  background-color: #f0f6fb !important;
+
 }
 
-/* Cards hover effect */
+.text-primary {
+  color: #0079c8 !important;
+}
+
+.btn-primary {
+  background-color: #0079c8 !important;
+  border-color: #0079c8 !important;
+}
+
+/* Efeito dos cartoes */
 .card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -18,13 +28,13 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
 }
 
-/* Buttons */
+/* Botoes */
 .btn {
   font-weight: 600;
   font-size: 0.85rem;
 }
 
-/* Bottom nav */
+/* Nav Botoes */
 .fixed-bottom {
   box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
 }    
