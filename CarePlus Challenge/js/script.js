@@ -468,9 +468,10 @@ async function buscarClima() {
             </p>
           </div>
         </div>`;
+      
     }
   }
-
+}
 function atualizarNotificacaoClima(temp, descricao, icone, riscoAlto, vento) {
   const notifClima = document.getElementById('notifClima');
   if (!notifClima) return;
