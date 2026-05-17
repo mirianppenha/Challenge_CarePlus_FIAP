@@ -4,19 +4,15 @@ const btnRealizadas = document.getElementById('btnRealizadas');
 
 if (btnProximas && btnRealizadas) {
 
-  btnProximas.addEventListener('click', function() {
-    document.getElementById('proximasSection').style.display = 'block';
-    document.getElementById('realizadasSection').style.display = 'none';
-    btnProximas.className = 'btn btn-dark rounded-pill px-4';
-    btnRealizadas.className = 'btn btn-outline-secondary rounded-pill px-4';
-  });
+btnProximas.addEventListener('click', function() {
+    btnProximas.style.cssText = 'background:#f59e0b; color:#1a202c; border:none;';
+    btnRealizadas.style.cssText = 'background:transparent; color:#f59e0b; border: 2px solid #f59e0b;';
+});
 
-  btnRealizadas.addEventListener('click', function() {
-    document.getElementById('proximasSection').style.display = 'none';
-    document.getElementById('realizadasSection').style.display = 'block';
-    btnProximas.className = 'btn btn-outline-secondary rounded-pill px-4';
-    btnRealizadas.className = 'btn btn-dark rounded-pill px-4';
-  });
+btnRealizadas.addEventListener('click', function() {
+    btnRealizadas.style.cssText = 'background:#f59e0b; color:#1a202c; border:none;';
+    btnProximas.style.cssText = 'background:transparent; color:#f59e0b; border: 2px solid #f59e0b;';
+});
 
 }
 function cancelarConsulta() {
